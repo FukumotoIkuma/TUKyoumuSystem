@@ -4,7 +4,8 @@ USER_NAME = "{user name}"#c000000000
 PASSWORD="{password}"#password
 
 #開発環境用。削除してください。
-import account
+from account import USER_NAME,PASSWORD
+print(USER_NAME,PASSWORD)
 
 #sessionを開始。cookieが保存される。必要かわからないけど一旦使っておく。
 session = requests.Session()
