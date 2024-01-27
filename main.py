@@ -18,6 +18,7 @@ response_1 = session.get(
 print(f"redirect:{response_1.history}")
 print(f"current url:{response_1.url}")
 print(f"cookies:{response_1.cookies}")
+print("\n")
 
 with open('output1.html', 'w', encoding='utf-8') as file:
     file.write(response_1.text) 
@@ -36,7 +37,8 @@ response_2 = session.post(
 #認証情報生成後のリダイレクトはJSによって制御されている
 #つまり、requestsモジュールでは自動的に行われない
 
-print(f"cookies:{response_2.cookies}")
+print(f"cookies:{response_2.cookies}\n\n")
+
 
 #output2はファイルを開いたらJSによりリダイレクトされるので開けない。
 #エディタで開いてみてみてください。
@@ -70,9 +72,10 @@ with open('output4.html', 'w', encoding='utf-8') as file:
     file.write(response_4.text) 
 #時間割の部分だけ抽出
 res4_soup = BeautifulSoup(response_4.content,"html.parser")
-table = res4_soup.findAll("table")
+table_lecture = res4_soup.find(id="tblLecture")
+table_others = res4_soup.find(id="tblOhters")
 with open('table.html', 'w', encoding='utf-8') as file:
-    file.write(str(table[12])+str(table[14])) 
+    file.write(str(table_lecture)+str(table_others)) 
 
 
 
