@@ -17,6 +17,7 @@ response_1 = session.get(
 #リダイレクトされ、普段見るログインページに遷移
 print(f"redirect:{response_1.history}")
 print(f"current url:{response_1.url}")
+print(f"cookies:{response_1.cookies}")
 
 #ログイン処理
 response_2 = session.post(
@@ -31,6 +32,8 @@ response_2 = session.post(
 #このページで認証情報が生成されるっぽい
 #認証情報生成後のリダイレクトはJSによって制御されている
 #つまり、requestsモジュールでは自動的に行われない
+
+print(f"cookies:{response_2.cookies}")
 
 #HTMLファイルを解析し、認証情報を取り出す
 res2_soup = BeautifulSoup(response_2.content,"html.parser")
@@ -47,6 +50,8 @@ response_3 = session.post(
         "SAMLResponse":SAMLResponse
         }
     )
+
+print(f"cookies:{response_3.cookies}")
 
 #ログイン完了したので、自由にスクレイピング可能。今回は時間割を開いてみた
 response_4 = session.get("https://eweb.stud.tokushima-u.ac.jp/Portal/StudentApp/Regist/RegistList.aspx")
