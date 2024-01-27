@@ -3,6 +3,9 @@ from bs4 import BeautifulSoup
 USER_NAME = "{user name}"#c000000000
 PASSWORD="{password}"#password
 
+#開発環境用。削除してください。
+import account
+
 #sessionを開始。cookieが保存される。必要かわからないけど一旦使っておく。
 session = requests.Session()
 
@@ -47,6 +50,9 @@ response_3 = session.post(
 #ログイン完了したので、自由にスクレイピング可能。今回は時間割を開いてみた
 response_4 = session.get("https://eweb.stud.tokushima-u.ac.jp/Portal/StudentApp/Regist/RegistList.aspx")
 
+res4_soup = BeautifulSoup(response_4.content,"html.parser")
+table = res4_soup.find("table")
+print(table)
 
 #各レスポンスの時点で表示されるHTMLを出力しておく。
 #output2はファイルを開いたらJSによりリダイレクトされるので開けない。
