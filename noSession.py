@@ -112,8 +112,8 @@ with open('output4.html', 'w', encoding='utf-8') as file:
 
 #時間割の部分だけ抽出
 res4_soup = BeautifulSoup(response_4.content,"html.parser")
-table = res4_soup.findAll("table")
+table_lecture = res4_soup.find(id="tblLecture")
+table_others = res4_soup.find(id="tblOhters")
 with open('table.html', 'w', encoding='utf-8') as file:
-    file.write(str(table[12])+str(table[14])) 
-
+    file.write(str(table_lecture)+str(table_others)) 
 
