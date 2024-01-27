@@ -51,9 +51,11 @@ response_3 = session.post(
 #ログイン完了したので、自由にスクレイピング可能。今回は時間割を開いてみた
 response_4 = session.get("https://eweb.stud.tokushima-u.ac.jp/Portal/StudentApp/Regist/RegistList.aspx")
 
+#時間割の部分だけ抽出
 res4_soup = BeautifulSoup(response_4.content,"html.parser")
-table = res4_soup.find("table")
-print(table)
+table = res4_soup.findAll("table")
+with open('table.html', 'w', encoding='utf-8') as file:
+    file.write(str(table[12])+str(table[14])) 
 
 #各レスポンスの時点で表示されるHTMLを出力しておく。
 #output2はファイルを開いたらJSによりリダイレクトされるので開けない。
