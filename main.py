@@ -7,7 +7,7 @@ PASSWORD="{password}"#password
 from account import USER_NAME,PASSWORD
 print(USER_NAME,PASSWORD)
 
-#sessionを開始。cookieが保存される。必要かわからないけど一旦使っておく。
+#sessionを開始。簡単にcookieを引き継いだだけでは動かなかった。
 session = requests.Session()
 
 #ログインページの基底サイトにアクセス。
